@@ -1,10 +1,14 @@
-FROM debian:buster
+# build_hw: use 'intel-nuc' for amd64, rpi for arm32v6
+ARG build_hw=intel-nuc
+
+FROM balenalib/${build_hw}-debian:buster
 
 RUN apt-get update \
-  && apt-get install -y autoconf cdrdao curl eject flac git libiso9660-dev \
-  libsndfile1-dev libtool locales make pkgconf python-gobject-2 \
+  && apt-get install -y autoconf automake bzip2 cdrdao curl eject flac git libiso9660-dev \
+  libsndfile1-dev libtool locales make pkgconf python-dev python-gi python-gobject-2 \
   python-musicbrainzngs python-mutagen python-pip python-requests \
   python-ruamel.yaml python-setuptools sox swig \
+  && pip install wheel \
   && pip install pycdio==2.1.0
 
 # libcdio-paranoia / libcdio-utils are wrongfully packaged in Debian, thus built manually
