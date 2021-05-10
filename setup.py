@@ -10,7 +10,7 @@ setup(
     license='GPL3',
     python_requires='>=2.7,<3',
     packages=find_packages(),
-    setup_requires=['setuptools_scm'],
+    setup_requires=['setuptools_scm==3.3.3'],
     ext_modules=[
         Extension('accuraterip',
                   libraries=['sndfile'],
